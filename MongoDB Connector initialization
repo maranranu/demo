@@ -1,0 +1,13 @@
+create entry in “/etc/mongod.conf”
+replSet=rs0
+restart the mongod service
+sudo service mongod restart
+open mongo
+mongo
+
+use admin
+rs.initiate()
+curl -XPOST localhost:9200/oilbird -d '{ "settings" : { "refresh_interval" : "-1" }, "mappings" : { "kolList_authors_top_180": { "date_detection":false, "dynamic_templates": [ { "string_fields": { "mapping": { "type": "string", "fields": { "raw": { "index": "not_analyzed", "ignore_above": 256, "type": "string" } } }, "match_mapping_type": "string", "match": "*" } } ] } } }'
+70
+mongo-connector -m localhost:27017 -t localhost:9200 -d elastic_doc_manager
+sudo mongo-connector --auto-commit-interval=0 -d elastic_doc_manager -m localhost:27017 -t 130.211.248.184:9200
