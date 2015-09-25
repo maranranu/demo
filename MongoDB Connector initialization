@@ -1,3 +1,6 @@
+//commands for mongo-connector setup
+
+
 create entry in “/etc/mongod.conf”
 replSet=rs0
 restart the mongod service
